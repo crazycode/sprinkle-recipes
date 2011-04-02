@@ -9,7 +9,7 @@ policy :reef_build_node, :roles => [:target_box] do
   requires :mvn3
   requires :ruby
   requires :gem_capistrano
-  requires :hudson
+  requires :jenkins
 end
 
 deploy

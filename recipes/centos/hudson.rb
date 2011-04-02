@@ -1,7 +1,7 @@
 # sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
 # sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
 
-package :hudson_yum do
+package :jenkins_yum do
   requires :wget
 
   noop do
@@ -15,8 +15,8 @@ package :hudson_yum do
   end
 end
 
-package :hudson_app do
-  requires :java, :hudson_yum
+package :jenkins_app do
+  requires :java, :jenkins_yum
 
   yum('jenkins')
 
@@ -26,19 +26,17 @@ package :hudson_app do
 
 end
 
-package :hudson do
+package :jenkins do
 
-  requires :hudson_app
-  # only necessary to update the --prefix=/hudson setting, the replace_text function didn't work
+  requires :jenkins_app
 
-
-  transfer "#{File.dirname(__FILE__)}/../config/hudson", 'hudson' do
-    post :install, 'sudo mv hudson /etc/default/hudson'
+  transfer "#{File.dirname(__FILE__)}/../config/jenkins", 'jenkins' do
+    post :install, 'sudo mv jenkins /etc/default/jenkins'
   end
 
 
   verify do
-    file_contains '/etc/default/hudson', 'prefix'
+    file_contains '/etc/default/hudson', '8099'  # Port
   end
 
 end

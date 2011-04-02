@@ -8,7 +8,7 @@ default_run_options[:pty] = true
 set :user, 'root'
 
 # machine we want to install the reef node software stack on
-role :target_box, "10.132.97.19:58422"
+role :target_box, "10.132.2.11:58422"
 
 # we can also have a list of machines to install them all in parrell
 #role :target_box, "192.168.100.80", "192.168.100.70", "192.168.100.14"
