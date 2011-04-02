@@ -31,8 +31,9 @@ package :hudson do
   requires :hudson_app
   # only necessary to update the --prefix=/hudson setting, the replace_text function didn't work
 
-  transfer '#{File.dirname(__FILE__)}/../config/hudson', 'hudson' do
-    post :install, 'mv hudson /etc/default/hudson'
+
+  transfer "#{File.dirname(__FILE__)}/../config/hudson", 'hudson' do
+    post :install, 'sudo mv hudson /etc/default/hudson'
   end
 
 
